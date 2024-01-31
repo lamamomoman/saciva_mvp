@@ -1,0 +1,71 @@
+#nav-bar-wrapper{
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 5px 5px 2px rgba(0, 0, 0, 0.173);
+}
+
+#nav-bar-wrapper h1{
+    font-size: var(--p-small);
+}
+
+#nav-bar{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    backdrop-filter: blur(0.5) opacity(0.4);
+}
+
+#nav-bar #nav-logo #nav-logo-wrapper img{
+    width: 3em;
+}
+
+#nav-bar div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#nav-bar #links #login-button-wrapper{
+    margin: 0 0 0 20px;
+}
+
+#nav-bar #links #login-button-wrapper #login{
+    position: relative;
+    color: white;
+    background-color: var(--accent-color2);
+    border-radius: 10px;
+    padding: 10px 50px;
+    cursor: pointer;
+    overflow: hidden;
+    transform: scale(0.9);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#login #login-bg{
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    transform: translate(0%, 120%);
+    height: 100%;
+    transition: transform 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+#nav-bar #links #login-button-wrapper #login:hover{
+    transform: scale(1);
+}
+
+#nav-bar #links #login-button-wrapper #login:hover #login-bg{
+    transform: translate(0%, 0%);
+}
