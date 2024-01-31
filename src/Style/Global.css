@@ -1,0 +1,25 @@
+:root{
+    --primary-color: #4B0082;
+    --accent-color1: #8A59AE;
+    --accent-color2: #A580C0;
+    --accent-color3: #D2BFE0;
+    --white-faded: rgba(255, 255, 255, 0.7);
+    --add-color: #FF2929;
+
+    --large-heading: 100px;
+    --very-big-heading: 80px;
+    --big-heading: 60px;
+    --med-heading: 40px;
+    --p-small: 18px;
+    --p-font-size: 22px;
+    --p-big-font-size: 24px;
+
+    --box-margin: 40px;
+    --button-margin: 50px;
+
+    --minimal-padding: 20px;
+    --box-padding: 40px;
+    --button-padding: 20px 40px;
+    --page-padding: 50px;
+    
+}
