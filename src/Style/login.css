@@ -1,0 +1,119 @@
+#login-container-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-container {
+    background-color: var(--primary-color-trans);
+    padding: 5em 7em;
+    height: 50%;
+    width: 25%;
+    border-radius: 20px;
+}
+
+#login-container #login-container-heading {
+    margin: 0 0 20px 0;
+}
+
+#login-container #login-container-heading h1 {
+    font-size: var(--big-heading);
+    font-weight: 500;
+    color: white;
+}
+
+#login-container #login-container-heading p {
+    font-size: var(--p-big-font-size);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#login-container #login-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-container #login-form form .input {
+    width: auto;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    margin: 20px 0;
+    border-bottom: 1px solid white;
+    position: relative;
+    display: flex;
+}
+
+#login-container #login-form form input {
+    font-size: var(--p-big-font-size);
+    color: white;
+    border: none;
+    background-color: transparent;
+    padding: 0.5em 0;
+    width: 100%;
+    height: 100%;
+}
+
+#login-container #login-form form .input .placeholder {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    font-weight: 400;
+    color: white;
+    opacity: 0.5;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    transition: bottom 0.2s ease-in-out,
+        font-size 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86),
+        transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* #login-container #login-form form .input:focus-within h1,
+#login-container #login-form form .input input:valid h1{
+    position: absolute;
+    font-size: 15px;
+    color: white;
+    bottom: 70%;
+    opacity: 0.2;
+} */
+
+#login-container #login-form form .input.filled h1{
+    position: absolute;
+    font-size: 15px;
+    color: white;
+    bottom: 70%;
+    opacity: 0.2;
+}
+
+#login-container #login-form form input:focus {
+    outline: none;
+}
+
+#login-container>h1 {
+    font-size: 100px;
+}
+
+#login-form #submit-button-wrapper {
+    margin: 20px 0 0 0;
+}
+
+
+#login-form #submit-button-wrapper #submit-button {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1em 0;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+#login-form #submit-button-wrapper #submit-button h1{
+    font-weight: 300;
+}
