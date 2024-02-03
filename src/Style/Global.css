@@ -5,12 +5,15 @@
     --accent-color2: #A580C0;
     --accent-color3: #D2BFE0;
     --white-faded: rgba(255, 255, 255, 0.7);
+    --white-very-faded: rgba(255, 255, 255, 0.3);
     --add-color: #FF2929;
 
     --large-heading: 100px;
     --very-big-heading: 80px;
     --big-heading: 60px;
     --med-heading: 40px;
+
+    --p-very-small: 14px;
     --p-small: 18px;
     --p-font-size: 22px;
     --p-big-font-size: 24px;
@@ -22,5 +25,4 @@
     --box-padding: 40px;
     --button-padding: 20px 40px;
     --page-padding: 50px;
-    
 }

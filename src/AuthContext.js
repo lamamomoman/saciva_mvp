@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     // Add your logic here, such as opening a window or showing a modal
 
     // Update the login state
-    setLoggedIn(true);
+    setLoggedIn(!isLoggedIn);
   };
 
   return (

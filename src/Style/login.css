@@ -12,24 +12,44 @@
 
 #login-container {
     background-color: var(--primary-color-trans);
-    padding: 5em 7em;
-    height: 50%;
+    padding: 3em 5em 6em 5em;
+    height: auto;
     width: 25%;
     border-radius: 20px;
 }
 
+#login-container #close-login{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+#login-container #close-login img{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    color: var(--white-faded);
+    transform: rotate(0deg) scale(0.8);
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+#login-container #close-login img:hover{
+    transform: rotate(90deg) scale(1);
+}
+
 #login-container #login-container-heading {
-    margin: 0 0 20px 0;
+    margin: 0 0 40px 0;
 }
 
 #login-container #login-container-heading h1 {
-    font-size: var(--big-heading);
+    font-size: var(--med-heading);
     font-weight: 500;
     color: white;
 }
 
 #login-container #login-container-heading p {
-    font-size: var(--p-big-font-size);
+    font-size: var(--p-font-size);
     color: rgba(255, 255, 255, 0.7);
 }
 
@@ -43,18 +63,18 @@
     height: 100%;
     background-color: transparent;
     border: none;
-    margin: 20px 0;
+    margin: 15px 0;
     border-bottom: 1px solid white;
     position: relative;
     display: flex;
 }
 
 #login-container #login-form form input {
-    font-size: var(--p-big-font-size);
+    font-size: var(--p-font-size);
     color: white;
     border: none;
     background-color: transparent;
-    padding: 0.5em 0;
+    padding: 0.4em 0;
     width: 100%;
     height: 100%;
 }
@@ -70,7 +90,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    font-size: 20px;
+    font-size: 18px;
     transition: bottom 0.2s ease-in-out,
         font-size 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86),
         transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -105,7 +125,6 @@
     margin: 20px 0 0 0;
 }
 
-
 #login-form #submit-button-wrapper #submit-button {
     background-color: white;
     border-radius: 10px;
@@ -115,5 +134,74 @@
 }
 
 #login-form #submit-button-wrapper #submit-button h1{
+    font-weight: 500;
+}
+
+#login-form #login-option-wrapper{
+    margin: 10px 0;
+}
+
+#login-form #login-option-wrapper #login-options{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#login-form #login-option-wrapper #login-options h1{
+    color: var(--white-faded);
+    font-size: var(--p-very-small);
     font-weight: 300;
+}
+
+#login-form #create-account-wrapper{
+    margin: 20px 0 0 0;
+    padding: 0em 3em 0 3em;
+}
+
+#login-form #create-account-wrapper #create-account #new-to{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0.3;
+}
+
+#login-form #create-account-wrapper #create-account #new-to h1{
+    font-size: var(--p-very-small);
+    margin: 0 15px;
+    font-weight: 300;
+    color: white;
+}
+
+#login-form #create-account-wrapper #create-account #new-to .line{
+    border: 0.5px solid white;
+    width: 30%;
+}
+
+#login-form #create-account-wrapper #create-account #create-account-button-wrapper{
+    border: 2px solid white;
+    margin: 5px 0;
+    padding: 10px 5px;
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+#login-form #create-account-wrapper #create-account #create-account-button-wrapper h1{
+    font-weight: 300;
+    font-size: var(--p-small);
+}
+
+#login-form #privacy-content{
+    margin: 2em 0 0 0;
+    width: 60%;
+    color: var(--white-very-faded);
+    font-size: var(--p-very-small);
+}
+
+#login-form #privacy-content a{
+    margin: 0 2px;
+    text-decoration: underline;
+    color: var(--white-faded);
 }

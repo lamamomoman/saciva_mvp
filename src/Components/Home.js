@@ -1,14 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Children, useEffect, useRef, useState } from 'react';
 import { ReactComponent as ReactLogo } from '../Assets/Vector.svg';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { useTrail, animated, useScroll } from 'react-spring';
+import { useTrail, animated, useScroll, config, a } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import { useAuth } from '../AuthContext';
 import { primary_card_info, secondary_card_info } from '../CardInfo.js';
 
+import CloseIcon from '../Assets/close.png';
 import '../Style/Home.css';
 import '../Style/login.css';
-import { redirect } from 'react-router-dom';
+import { isRouteErrorResponse } from 'react-router-dom';
 
 const Home = () => {
 
@@ -135,6 +136,7 @@ const Login = () => {
     const passwordRef = useRef(null);
     const [isEmailFilled, setEmailFilled] = useState(false);
     const [isPasswordFilled, setPasswordFilled] = useState(false);
+    const { handleLoginClick } = useAuth();
 
     useEffect(() => {
         console.log(isEmailFilled);
@@ -144,6 +146,7 @@ const Login = () => {
         // setInputFilled(!!inputElement.value.trim());
     }, [isEmailFilled, isPasswordFilled]);
 
+
     const handleEmailChange = () => {
         setEmailFilled(!!emailRef.current.querySelector('input').value);
     }
@@ -152,40 +155,65 @@ const Login = () => {
     }
 
     return <section id="login-container-wrapper">
-        <div id="login-container">
-            <div id="login-container-heading">
-                <h1>Welcome Back,</h1>
-                <p>Please login to your account</p>
-            </div>
-            <div id="login-form">
-                <form>
-                    <div ref={emailRef} className={`input ${isEmailFilled ? 'filled' : ''}`}>
-                        <h1 className='placeholder'>Email Address</h1>
-                        <input onChange={handleEmailChange} required type="email"></input>
-                    </div>
-                    <div ref={passwordRef} className={`input ${isPasswordFilled ? 'filled' : ''}`}>
-                        <h1 className='placeholder'>Password</h1>
-                        <input onChange={handlePasswordChange} required type="password"></input>
-                    </div>
-                    <div id="submit-button-wrapper">
-                        <div id="submit-button">
-                            <h1>Log In</h1>
+        <FadeIn>
+                <div id="close-login">
+                    <img onClick={handleLoginClick} width="48" height="48" src={CloseIcon} />
+                </div>
+                <div id="login-container-heading">
+                    <h1>Welcome Back,</h1>
+                    <p>Please login to your account</p>
+                </div>
+                <div id="login-form">
+                    <form>
+                        <div ref={emailRef} className={`input ${isEmailFilled ? 'filled' : ''}`}>
+                            <h1 className='placeholder'>Email Address</h1>
+                            <input onChange={handleEmailChange} required type="email"></input>
                         </div>
-                        <div id="login-option-wrapper">
-                            <div id="login-options">
-                                <div id="rem-me">
-
-                                </div>
-                                <div id="forgot-me">
-                                    <h1>Forgot Password</h1>
+                        <div ref={passwordRef} className={`input ${isPasswordFilled ? 'filled' : ''}`}>
+                            <h1 className='placeholder'>Password</h1>
+                            <input onChange={handlePasswordChange} required type="password"></input>
+                        </div>
+                        <div id="submit-button-wrapper">
+                            <div id="submit-button">
+                                <h1>Log In</h1>
+                            </div>
+                            <div id="login-option-wrapper">
+                                <div id="login-options">
+                                    <div id="rem-me">
+                                        <h1>Remember Me</h1>
+                                    </div>
+                                    <div id="forgot-me">
+                                        <h1 style={{ textDecoration: 'underline' }}>Forgot Password</h1>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
+                        <div id="create-account-wrapper">
+                            <div id="create-account">
+                                <div id="new-to">
+                                    <div className="line">
+
+                                    </div>
+                                    <h1>New To Saciva</h1>
+                                    <div className="line">
+
+                                    </div>
+                                </div>
+                                <div id="create-account-button-wrapper">
+                                    <div id="create-account-button">
+                                        <h1>Create Account</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="privacy-content">
+                            <p>By Signing in, you agree to Saciva’s
+                                <a>Terms and Conditions</a> & <a>Privacy Policy.</a></p>
+                        </div>
+                    </form>
+                </div>
+        </FadeIn>
+    </section >
 }
 
 function PrimaryCards({ primary_card_info }) {
@@ -254,6 +282,24 @@ function WordTrail({ children }) {
             ))}
         </h1>
     );
+}
+
+function FadeIn({ children }) {
+
+    const items = React.Children.toArray(children);
+
+    const trail = useTrail(items.length, {
+        config: {tension: 60, spring: 1, friction: 10, mass: 1},
+        opacity: 1,
+        y: 0,
+        from: { opacity: 0, y: 100 }
+    });
+
+    return <div id="login-container">
+        {trail.map(({ opacity, y }, index) => (
+            <a.div key={index} style={{ opacity: opacity, y: y }}>{items[index]}</a.div>
+        ))}
+    </div>
 }
 
 export default Home;
