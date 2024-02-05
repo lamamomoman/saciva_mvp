@@ -5,11 +5,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home';
 import NavBar from './Components/NavBar';
 import { PageNotFound } from './Components/404';
+import SignUp from './Components/SignUp';
+
 import './Style/index.css';
 import './Style/Global.css';
+
 import { AuthProvider } from './AuthContext';
 
 function App() {
+
   return (
     <AuthProvider>
       <div className="App">
@@ -17,7 +21,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-
+            <Route path="/signUp" element={<SignUp />} />
             {/* Page not found, 404 */}
             <Route path="*" element={<PageNotFound />} />
           </Routes>

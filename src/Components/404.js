@@ -14,7 +14,7 @@ export const PageNotFound = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/')
+        navigate('/', {replace: true});
     }
 
     return (

@@ -58,7 +58,7 @@
     flex-direction: column;
 }
 
-#login-container #login-form form .input {
+form .input {
     width: auto;
     height: 100%;
     background-color: transparent;
@@ -69,24 +69,23 @@
     display: flex;
 }
 
-#login-container #login-form form input {
+form input {
     font-size: var(--p-font-size);
     color: white;
     border: none;
     background-color: transparent;
     padding: 0.4em 0;
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
-#login-container #login-form form .input .placeholder {
+form .input .placeholder {
     position: absolute;
     bottom: 0;
-    left: 0;
     width: auto;
     font-weight: 400;
     color: white;
-    opacity: 0.5;
+    opacity: 0.3;
     height: 100%;
     display: flex;
     align-items: center;
@@ -105,15 +104,15 @@
     opacity: 0.2;
 } */
 
-#login-container #login-form form .input.filled h1{
+form .input.filled h1{
     position: absolute;
     font-size: 15px;
     color: white;
     bottom: 70%;
-    opacity: 0.2;
+    opacity: 1;
 }
 
-#login-container #login-form form input:focus {
+form input:focus {
     outline: none;
 }
 

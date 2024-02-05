@@ -1,0 +1,228 @@
+#sign-up-wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+#sign-up-page {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+#sign-up-page #sign-up-details {
+    position: relative;
+    height: auto;
+    width: auto;
+    padding: 0 8em;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#sign-up-details #personal-info p {
+    color: var(--accent-color2);
+    text-align: right;
+    font-weight: 300;
+}
+
+#sign-up-page #sign-up-details form {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#sign-up-page #sign-up-details form>div {
+    margin: 20px 0 0 0;
+}
+
+#sign-up-page #sign-up-details form div h1 {
+    text-align: right;
+    color: var(--accent-color2);
+    font-weight: 400;
+}
+
+#sign-up-details #options {
+    display: flex;
+    margin: 15px 0;
+}
+
+#sign-up-details form select {
+    padding: 10px;
+    flex: 1;
+    color: var(--accent-color1);
+    font-size: 20px;
+    border-radius: 10px;
+    border: 1.4px solid var(--accent-color1);
+    width: auto;
+}
+
+#sign-up-details form select:focus {
+    outline: none;
+    opacity: 1;
+}
+
+#sign-up-details form select:hover {
+    opacity: 1;
+}
+
+#sign-up-page form .input {
+    margin: 20px 0 0 0;
+    padding: 1px 1em;
+    width: auto;
+    border-radius: 10px;
+    border: 1.4px solid var(--accent-color3);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.276);
+    transition: box-shadow 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+        border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#sign-up-page #sign-up-details form input {
+    color: var(--primary-color);
+}
+
+#sign-up-page #sign-up-details form .input:hover {
+    border: 2px solid var(--accent-color1);
+    box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.276);
+}
+
+#sign-up-page #sign-up-details form .input.filled {
+    border: 3px solid var(--accent-color1);
+}
+
+#sign-up-page #sign-up-details form .input.filled h1 {
+    bottom: 80%;
+}
+
+#sign-up-page #sign-up-details form .placeholder {
+    color: purple;
+}
+
+#sign-up-page #sign-up-details form #password.passwordsMatch,
+#sign-up-page #sign-up-details form #re-password.passwordsMatch {
+    border: 3px solid rgb(4, 146, 4);
+}
+
+
+#sign-up-page #sign-up-bg {
+    position: relative;
+    flex: 1.5;
+    border-radius: 0 500px 0 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sign-up-page #sign-up-bg #sign-up-bg-content {
+    padding: 5em;
+    position: absolute;
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    backdrop-filter: blur(3px) contrast(1.2) brightness(0.8);
+}
+
+#sign-up-page #sign-up-bg #sign-up-bg-content>h1 {
+    font-size: var(--large-heading);
+    font-weight: 500;
+    margin: 50px 0;
+    color: var(--primary-color);
+}
+
+#sign-up-page #sign-up-bg #sign-up-bg-content>p {
+    font-size: var(--p-big-font-size);
+    color: white;
+}
+
+#sign-up-page #sign-up-bg #sign-up-bg-wrapper {
+    height: 100%;
+}
+
+#sign-up-page #sign-up-bg #sign-up-bg-wrapper img {
+    width: 100%;
+    transform: translate(0%, -20%);
+}
+
+#sign-up-details #submit-form-button-wrapper {
+    text-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#sign-up-details #submit-form-button-wrapper #submit-form-button {
+    color: white;
+    position: relative;
+    width: 60%;
+    outline: none;
+    border: none;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: var(--accent-color2);
+    transition: width 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045),
+        opacity 0.4s ease-in-out,
+        transform 0.4s ease-in-out;
+}
+
+#sign-up-details #submit-form-button.disabled {
+    opacity: 0.2;
+    pointer-events: none;
+    transform: scale(0.95);
+}
+
+#sign-up-details #submit-form-button.enabled {
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(1);
+}
+
+#sign-up-details #submit-form-button-wrapper #submit-form-button:hover {
+    width: 70%;
+}
+
+#submit-form-button #submit-button-bg {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    transform: translate(0%, -120%);
+    background-color: var(--primary-color);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 0;
+    box-sizing: border-box;
+    transition: transform 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+#sign-up-details #submit-form-button:hover #submit-button-bg {
+    transform: translate(0, 0);
+}
+
+#sign-up-page #sign-up-details #submit-form-button h1 {
+    color: white;
+    text-align: center;
+}

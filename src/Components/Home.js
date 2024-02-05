@@ -9,10 +9,10 @@ import { primary_card_info, secondary_card_info } from '../CardInfo.js';
 import CloseIcon from '../Assets/close.png';
 import '../Style/Home.css';
 import '../Style/login.css';
-import { isRouteErrorResponse } from 'react-router-dom';
+import { isRouteErrorResponse, useNavigate } from 'react-router-dom';
 
 const Home = () => {
-
+    
     const { isLoggedIn, handleLoginClick } = useAuth();
 
     return (
@@ -131,88 +131,72 @@ const Home = () => {
 };
 
 const Login = () => {
-
-    const emailRef = useRef(null);
-    const passwordRef = useRef(null);
-    const [isEmailFilled, setEmailFilled] = useState(false);
-    const [isPasswordFilled, setPasswordFilled] = useState(false);
     const { handleLoginClick } = useAuth();
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log(isEmailFilled);
-        console.log(isPasswordFilled);
-        // const inputElement = ref.current.querySelector('input');
-        // console.log(inputElement);
-        // setInputFilled(!!inputElement.value.trim());
-    }, [isEmailFilled, isPasswordFilled]);
-
-
-    const handleEmailChange = () => {
-        setEmailFilled(!!emailRef.current.querySelector('input').value);
-    }
-    const handlePasswordChange = () => {
-        setPasswordFilled(!!passwordRef.current.querySelector('input').value);
+    const handleCreateAccount = () => {
+        // Navigate to the signUp route
+        navigate('/signUp');
     }
 
     return <section id="login-container-wrapper">
-        <FadeIn>
-                <div id="close-login">
-                    <img onClick={handleLoginClick} width="48" height="48" src={CloseIcon} />
-                </div>
-                <div id="login-container-heading">
-                    <h1>Welcome Back,</h1>
-                    <p>Please login to your account</p>
-                </div>
-                <div id="login-form">
-                    <form>
-                        <div ref={emailRef} className={`input ${isEmailFilled ? 'filled' : ''}`}>
-                            <h1 className='placeholder'>Email Address</h1>
-                            <input onChange={handleEmailChange} required type="email"></input>
+        <FadeIn id="login-container">
+            <div id="close-login">
+                <img onClick={handleLoginClick} width="48" height="48" src={CloseIcon} />
+            </div>
+            <div id="login-container-heading">
+                <h1>Welcome Back,</h1>
+                <p>Please login to your account</p>
+            </div>
+            <div id="login-form">
+                <form>
+                    {/* <div ref={emailRef} className={`input ${isEmailFilled ? 'filled' : ''}`}>
+                        <h1 className='placeholder'>Email Address</h1>
+                        <input onChange={handleEmailChange} required type="email"></input>
+                    </div> */}
+                    <InputComp type={"email"} placeHolderText={"Email Address"} />
+                    <InputComp type={"password"} placeHolderText={"Password"} />
+                    <div id="submit-button-wrapper">
+                        <div id="submit-button">
+                            <h1>Log In</h1>
                         </div>
-                        <div ref={passwordRef} className={`input ${isPasswordFilled ? 'filled' : ''}`}>
-                            <h1 className='placeholder'>Password</h1>
-                            <input onChange={handlePasswordChange} required type="password"></input>
-                        </div>
-                        <div id="submit-button-wrapper">
-                            <div id="submit-button">
-                                <h1>Log In</h1>
-                            </div>
-                            <div id="login-option-wrapper">
-                                <div id="login-options">
-                                    <div id="rem-me">
-                                        <h1>Remember Me</h1>
-                                    </div>
-                                    <div id="forgot-me">
-                                        <h1 style={{ textDecoration: 'underline' }}>Forgot Password</h1>
-                                    </div>
+                        <div id="login-option-wrapper">
+                            <div id="login-options">
+                                <div id="rem-me">
+                                    <h1>Remember Me</h1>
+                                </div>
+                                <div id="forgot-me">
+                                    <h1 style={{ textDecoration: 'underline' }}>Forgot Password</h1>
                                 </div>
                             </div>
                         </div>
-                        <div id="create-account-wrapper">
-                            <div id="create-account">
-                                <div id="new-to">
-                                    <div className="line">
+                    </div>
+                    <div id="create-account-wrapper">
+                        <div id="create-account">
+                            <div id="new-to">
+                                <div className="line">
 
-                                    </div>
-                                    <h1>New To Saciva</h1>
-                                    <div className="line">
-
-                                    </div>
                                 </div>
-                                <div id="create-account-button-wrapper">
-                                    <div id="create-account-button">
-                                        <h1>Create Account</h1>
-                                    </div>
+                                <h1>New To Saciva</h1>
+                                <div className="line">
+
+                                </div>
+                            </div>
+                            <div id="create-account-button-wrapper">
+                                <div onClick={handleCreateAccount} id="create-account-button">
+                                    <h1>Create Account</h1>
                                 </div>
                             </div>
                         </div>
-                        <div id="privacy-content">
-                            <p>By Signing in, you agree to Saciva’s
-                                <a>Terms and Conditions</a> & <a>Privacy Policy.</a></p>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div id="privacy-content">
+                        <p>By Signing in, you agree to Saciva’s
+                            <a>Terms and Conditions</a> & <a>Privacy Policy.</a></p>
+                    </div>
+                </form>
+            </div>
         </FadeIn>
+
     </section >
 }
 
@@ -232,6 +216,32 @@ function PrimaryCards({ primary_card_info }) {
             ))}
         </div>
     );
+}
+
+export function InputComp({ type, placeHolderText, onChange, name, passwordsMatch}) {
+
+    const [isInputFilled, setInputFilled] = useState(false);
+
+    useEffect(() => {
+        // const inputElement = ref.current.querySelector('input');
+        // console.log(inputElement);
+        // setInputFilled(!!inputElement.value.trim());
+    }, [isInputFilled]);
+
+
+    const handleInputChange = (event) => {
+        setInputFilled(!!event.target.value);
+        // Call the onChange function passed as a prop
+        if (typeof onChange === 'function') {
+            onChange(event);
+        }
+    };
+
+    return <div id={name} className={`input ${passwordsMatch ? 'passwordsMatch': 'passwordsDontMatch'} ${isInputFilled ? 'filled' : ''}`}>
+        <div className='input-up-line'></div>
+        <h1 className='placeholder'>{placeHolderText}</h1>
+        <input name={name} onChange={handleInputChange} required type={type}></input>
+    </div>
 }
 
 function SecondaryCards({ secondary_card_info }) {
@@ -284,18 +294,18 @@ function WordTrail({ children }) {
     );
 }
 
-function FadeIn({ children }) {
+export function FadeIn({ children, id }) {
 
     const items = React.Children.toArray(children);
 
     const trail = useTrail(items.length, {
-        config: {tension: 60, spring: 1, friction: 10, mass: 1},
+        config: {tension: 600, friction: 40},
         opacity: 1,
         y: 0,
         from: { opacity: 0, y: 100 }
     });
 
-    return <div id="login-container">
+    return <div id={id}>
         {trail.map(({ opacity, y }, index) => (
             <a.div key={index} style={{ opacity: opacity, y: y }}>{items[index]}</a.div>
         ))}
