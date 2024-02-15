@@ -145,13 +145,11 @@
     position: relative;
     height: auto;
     padding: 0 10em;
-    margin: 50px 0;
     text-align: justify;
 }
 
 #home-page #info-section #info-heading #info-heading-wrapper > h1{
     width: auto;
-    margin: 40px 0;
     color: var(--accent-color3);
 }
 
@@ -179,11 +177,16 @@
 #home-page #info-section #info-card-wrapper{
     position: relative;
     height: 60vh;
+    margin: 5em 0;
     width: auto;
     display: flex;
     flex-direction: row;
     column-gap: 3em;
-    transform: translate(0%, 70%);
+}
+
+#info-section #info-section-content p{
+    font-size: var(--p-font-size);
+    text-align: center;
 }
 
 #home-page #info-section .card {
@@ -325,10 +328,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 10em;
+    justify-content: center;
+    width: 100%;
 }
 
 #home-page #support-section-wrapper #support-section {
+    width: 50%;
+    text-align: center;
+}
+
+#home-page #support-section-wrapper #support-section > div{
+    margin: 5em 0;
+}
+
+#home-page #support-section-wrapper #support-section a{
+    color: red;
+    font-family: 'Lato';
+    font-size: var(--p-font-size);
 }
 
 #home-page #support-section-wrapper #support-section .support-content {
@@ -344,19 +360,21 @@
 #home-page #support-section-wrapper p {
     font-size: 22px;
     opacity: 70%;
+    margin-bottom: 20px;
 }
 
 #home-page #support-button-wrapper {
     width: 100%;
     height: auto;
+    margin: 3em 0 0 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 #home-page #support-button-wrapper #support-button {
     border: 1px solid red;
-    margin: 30px 0;
     color: red;
     padding: 1em 5em;
     border-radius: 10px;

@@ -12,13 +12,13 @@ import '../Style/login.css';
 import { isRouteErrorResponse, useNavigate } from 'react-router-dom';
 
 const Home = () => {
-    
+
     const { isLoggedIn, handleLoginClick } = useAuth();
 
     return (
         <div>
             {isLoggedIn ? <Login /> : <></>}
-            <Parallax pages={4}>
+            <Parallax pages={3.7}>
                 <section id="home-page">
                     <div id="main-page">
                         <div id="background-wrapper">
@@ -55,38 +55,22 @@ const Home = () => {
                     </div>
                     <ParallaxLayer sticky={true} speed={0.5} offset={1}>
                         <div id="info-section">
-                            <ParallaxLayer speed={-0.2} offset={0} id="info-heading">
+                            <ParallaxLayer speed={-0.05} offset={0} id="info-heading">
                                 < div id="info-heading-wrapper">
                                     <h1>Why Choose Saciva</h1>
-                                    <p>Embark on a transformative academic journey tailored just for you with Saciva! As fellow international students, we intimately understand the unique challenges you encounter. Saciva isn't just a platform; it's your comprehensive, personalized solution designed to empower your success. Imagine a one-stop hub that anticipates your needs and guides you seamlessly through every academic endeavor. Join us today and redefine your path to success with Saciva – where your journey becomes an inspiring story of triumph! 🚀🎓 #SucceedWithSaciva.
-                                    </p>
                                 </div>
-
                             </ParallaxLayer>
                             <PrimaryCards primary_card_info={primary_card_info} />
+                            <div id="info-section-content">
+                                <p>Embark on a transformative academic journey tailored just for you with Saciva! As fellow international students, we intimately understand the unique challenges you encounter. Saciva isn't just a platform; it's your comprehensive, personalized solution designed to empower your success. Imagine a one-stop hub that anticipates your needs and guides you seamlessly through every academic endeavor. Join us today and redefine your path to success with Saciva – where your journey becomes an inspiring story of triumph! 🚀🎓 #SucceedWithSaciva.
+                                </p>
+                            </div>
                         </div>
                     </ParallaxLayer>
-                    <ParallaxLayer offset={2.2} speed={0.2} id="secondary-page-wrapper">
+                    <ParallaxLayer offset={2} speed={0.2} id="secondary-page-wrapper">
                         <div id="secondary-info-wrapper">
                             <div id="secondary-info-content">
                                 <h1>What we offer</h1>
-                                <p>At Saciva, we offer a holistic platform designed to enhance the experience of international students in the USA. Our array of services is tailored to address every aspect of your journey to success:
-                                    <br></br>
-                                    <br></br>
-                                    Embark on your academic adventure with confidence through our Roommate Matching feature, connecting you with like-minded peers.
-                                    <br></br>
-                                    <br></br>
-
-                                    Ensure a comfortable and secure stay with our dedicated Housing Solutions, providing accommodations suited to the unique needs of international students.
-
-                                    Forge meaningful connections and expand your horizons with our Networking Opportunities, fostering a diverse community of students.
-                                    <br></br>
-                                    <br></br>
-
-
-                                    Experience unwavering support with our Personalized Solutions, a one-stop destination for all your academic and personal needs.
-
-                                    Join Saciva today and let us be your guide to a fulfilling and thriving international student experience</p>
                             </div>
 
                             <SecondaryCards secondary_card_info={secondary_card_info} />
@@ -94,27 +78,22 @@ const Home = () => {
                             <div id="support-section-wrapper">
                                 <div id="support-section">
                                     <div className="support-content" id="support-1">
-                                        <h1>Our Story</h1>
-                                        <p>
-                                            While we are offering the platform for free for now, it costs us our money, time and effort to keep this running. We highly appreciate your generous support to make this platform more robust and featuresome!
-
-                                            <br />
-                                            <br />
-
-                                            You can also support us through spreading a word about Saciva, amongst your friends, neighbors, colleagues,  classmates and roommates or anyone who is a student, especially international students. Thanks :)
-                                        </p>
-                                    </div>
-
-                                    <div className="support-content" id="support-2">
-                                        <p>Visit our blog to know more about how our journey with Saciva started or Contact Us for any Feedback and Suggestions</p>
+                                        <p>We are You. We are international students. Visit our blog to know more about how our journey with Saciva started. At Saciva, we believe in the power of community, we appreciate your Feedback and Suggestions</p>
+                                        <a link="">^ Our Story ^</a>
                                     </div>
 
                                     <div id="support-button-wrapper">
+                                        <p>While we are offering the platform for free for now, it costs us our money, time and effort to keep this running. We highly appreciate your generous support to make this platform more robust and featuresome!</p>
                                         <div id="support-button">
                                             <h1>Support Us</h1>
                                             <div id="support-bg">
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div className="support-content" id="support-2">
+                                        <p>You can also support us through spreading a word about Saciva, amongst your friends, neighbors, colleagues,  classmates and roommates or anyone who is a student, especially international students. Thanks :)</p>
+                                        <a href="https://abhishikth174.wixsite.com/saciva">^ Share with Friends ^</a>
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +197,7 @@ function PrimaryCards({ primary_card_info }) {
     );
 }
 
-export function InputComp({ type, placeHolderText, onChange, name, passwordsMatch}) {
+export function InputComp({ type, placeHolderText, onChange, name, passwordsMatch }) {
 
     const [isInputFilled, setInputFilled] = useState(false);
 
@@ -237,7 +216,7 @@ export function InputComp({ type, placeHolderText, onChange, name, passwordsMatc
         }
     };
 
-    return <div id={name} className={`input ${passwordsMatch ? 'passwordsMatch': 'passwordsDontMatch'} ${isInputFilled ? 'filled' : ''}`}>
+    return <div id={name} className={`input ${passwordsMatch ? 'passwordsMatch' : 'passwordsDontMatch'} ${isInputFilled ? 'filled' : ''}`}>
         <div className='input-up-line'></div>
         <h1 className='placeholder'>{placeHolderText}</h1>
         <input name={name} onChange={handleInputChange} required type={type}></input>
@@ -299,7 +278,7 @@ export function FadeIn({ children, id }) {
     const items = React.Children.toArray(children);
 
     const trail = useTrail(items.length, {
-        config: {tension: 600, friction: 40},
+        config: { tension: 600, friction: 40 },
         opacity: 1,
         y: 0,
         from: { opacity: 0, y: 100 }

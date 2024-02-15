@@ -1,0 +1,114 @@
+#verification-wrapper{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+    z-index: 2;
+}
+
+#verification-box{
+    position: relative;
+    width: 60%;
+    box-sizing: border-box;
+    background-color: var(--primary-color-trans);
+    border-radius: 20px;
+    padding: 5em;
+}
+
+#verification-box #verification-inputs{
+    position: relative;
+    box-sizing: border-box;
+    bottom: 0;
+    left: 0;
+    margin: 2em 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: auto;
+    width: 100%;
+}
+
+#verification-box #verification-inputs input{
+    color: white;
+    width: 10%;
+    text-align: center;
+    font-size: var(--large-heading);
+    margin: 10px;
+    background-color: transparent;
+    border: none;
+    border: 4px solid rgba(255, 255, 255, 0.515);
+    border-radius: 20px;
+    padding: 20px;
+    transform: scale(0.9);
+    transition: border 0.1s ease-in-out,transform 0.1s ease-in-out;
+}
+
+#verification-box #verification-inputs input:focus{
+    outline: none;
+    border: 4px solid white;
+    transform: scale(1);
+}
+
+#verification-box #submit-code-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#verification-box #submit-code-wrapper #submit-code{
+    position: relative;
+    padding: 20px 5em;
+    border-radius: 20px;
+    color: var(--primary-color);
+    cursor: pointer;
+    overflow: hidden;
+    background-color: var(--accent-color3);
+    transition: padding 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#submit-code-bg{
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    color: var(--primary-color);
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    transform: translate(0%, -120%);
+    transition: transform 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+#verification-box #submit-code-wrapper #submit-code:hover #submit-code-bg{
+    transform: translate(0%,0%);
+}
+
+#verification-box #submit-code-wrapper #submit-code:hover{
+    padding: 20px 7em;
+}
+
+#verification-box-content{
+    width: 100%;
+}
+
+#verification-box-content h1{
+    z-index: 2;
+    font-size: var(--med-heading);
+    color: var(--accent-color3);
+}
+
+#verification-box-content p{
+    font-size: var(--p-small);
+    color: var(--accent-color2);
+    margin: 5px 0 0 0;
+}

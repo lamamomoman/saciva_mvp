@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import { InputComp, FadeIn } from "./Home";
+import { Alert } from "./Alert";
+import { Loading } from "./Loading";
 
 import '../Style/Home.css';
 import '../Style/SignUp.css';
 import '../Style/login.css';
+import '../Style/Verification.css';
+import { useAsyncError } from "react-router-dom";
+import { useReducedMotion } from "react-spring";
 
 const SignUp = () => {
 
@@ -24,17 +29,25 @@ const SignUp = () => {
         password: ''
     });
 
+    const [userSignedUp, setUserSignedUp] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [verifyCode, setVerifyCode] = useState(false);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
-        if(passwordsMatch){
+        if (passwordsMatch) {
             setFormData({ ...formData, [name]: value });
         }
-        else{
+        else {
             console.log("passwords dont seem to match, try again.")
         }
         // Do something with the email value, such as updating state
     };
+
+    useEffect(() => {
+
+    }, [userSignedUp, isLoading, verifyCode]);
 
     const handlePasswordChange = (e) => {
 
@@ -49,11 +62,14 @@ const SignUp = () => {
                 },
                 body: JSON.stringify({ email, password })
             });
-    
+
             if (!response.ok) {
                 throw new Error('Sign-up request failed');
             }
-    
+            else if (response.ok) {
+                setIsLoading(false);
+            }
+
             // If needed, handle successful sign-up response
         } catch (err) {
             console.error("Sign-up failed:", err);
@@ -80,7 +96,7 @@ const SignUp = () => {
             if (!response.ok) {
                 throw new Error('User details upload failed');
             }
-    
+
             // If needed, handle successful user details upload response
         } catch (err) {
             console.error("User details upload failed:", err);
@@ -91,13 +107,18 @@ const SignUp = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log("form data = ", formData);
-
-        await signUpUser(formData.email, formData.password);
-
-        await uploadUserDetails(formData);
+        setIsLoading(true);
+        await signUpUser(formData.email, passwordsMatch.password).then((response) => {
+            setUserSignedUp(true);
+            uploadUserDetails(formData);
+            setVerifyCode(true);
+        });
     }
 
     return <section id="sign-up-wrapper">
+        {verifyCode ? <VerificationPop /> : ""}
+        <Loading isLoading={isLoading} />
+        {/* {userSignedUp ? <Alert Message={"This is an Alert"} Title={"Alert!!!"} Delay={3000} /> : ""} */}
         <div id="sign-up-page">
             <div id="sign-up-details">
                 <form onSubmit={handleSubmit}>
@@ -158,7 +179,7 @@ const SignUp = () => {
                         <Passwords passwordsMatch={passwordsMatch} setPasswordsMatch={setPasswordsMatch} />
                     </FadeIn>
                     <div id="submit-form-button-wrapper">
-                        <button className={passwordsMatch.value ? 'enabled': 'disabled'} type="submit" id="submit-form-button">
+                        <button className={passwordsMatch.value ? 'enabled' : 'disabled'} type="submit" id="submit-form-button">
                             <h1>Create Account</h1>
                             <div id="submit-button-bg"><h1>Create Account</h1></div>
                         </button>
@@ -182,7 +203,6 @@ const Passwords = ({ passwordsMatch, setPasswordsMatch }) => {
 
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
-
 
     const handlePasswordChange = (event) => {
         const { name, value } = event.target;
@@ -215,6 +235,83 @@ const Passwords = ({ passwordsMatch, setPasswordsMatch }) => {
         <InputComp passwordsMatch={passwordsMatch.value} onChange={handlePasswordChange} name="re-password" type="password" placeHolderText={"Re-enter Password"} />
         {!passwordsMatch.value && (password !== '' || rePassword !== '') && <p>Passwords don't match!</p>}
     </span>
+}
+
+
+const VerificationPop = () => {
+
+    const verificationInputs = useRef(null);
+
+    const serverVerify = async (verificationCode) => {
+        try {
+            const response = await fetch('/verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ verificationCode })
+            });
+
+            if (!response.ok) {
+                throw new Error('verification failed');
+            }
+
+            else{
+                console.log("verification success");
+            }
+
+            // Assuming you want to return something from the function,
+            // you can return the response.json() or whatever data you want.
+            return response.json();
+        } catch (err) {
+            console.error("Verification Failed:", err);
+            // You might want to throw the error again if you want to handle it
+            // differently where you call serverVerify.
+            throw err;
+        }
+    }
+
+    const handleVerification = async (event) => {
+
+        const items = verificationInputs.current.querySelectorAll('input');
+
+        var verificationCode = "";
+
+        items.forEach(item => {
+            verificationCode += item.value;
+        });
+
+        await serverVerify(verificationCode).then((response) => {
+            console.log(response);
+        });
+    }
+
+    return <div id="verification-wrapper">
+        <FadeIn id="verification-box">
+            <div id="verification-box-content">
+                <h1>Enter the Code</h1>
+                <p>We have sent a 6 digit verification code to your email.</p>
+            </div>
+            <form ref={verificationInputs} id="verification-inputs">
+                <input required maxLength={1}></input>
+                <input required maxLength={1}></input>
+                <input required maxLength={1}></input>
+                <input required maxLength={1}></input>
+                <input required maxLength={1}></input>
+                <input required maxLength={1}></input>
+            </form>
+            <div onClick={handleVerification} id="submit-code-wrapper">
+                <div id="submit-code">
+                    <div id="submit-code-bg">
+                        <h1>Submit</h1>
+                    </div>
+                    <h1>Submit</h1>
+                </div>
+            </div>
+        </FadeIn>
+
+    </div>
+
 }
 
 export default SignUp;
